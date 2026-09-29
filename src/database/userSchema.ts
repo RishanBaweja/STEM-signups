@@ -1,9 +1,26 @@
 import mongoose, { Schema } from "mongoose";
 
-//! Example user schema. Not guaranteed to work
+const EducatorInfoSchema = new Schema(
+  {
+    isVerified: { type: Boolean, required: true, default: false },
+    stemSubjects: { type: [String], default: [] },
+  },
+  { _id: false },
+);
+
 const UserSchema = new Schema({
-  email: { type: String, required: true, unique: true },
+  firstName: { type: String, required: true, trim: true },
+  lastName: { type: String, required: true, trim: true },
+  username: { type: String, required: true, unique: true, trim: true },
+  email: { type: String, required: true, unique: true, trim: true },
   password: { type: String, required: true },
+  role: { type: String, enum: ["educator", "admin"], required: true },
+  educatorInfo: {
+    type: EducatorInfoSchema,
+    required: function (this: any) {
+      return this.role === "educator";
+    },
+  },
 });
 
 export default mongoose.models.User || mongoose.model("User", UserSchema);
