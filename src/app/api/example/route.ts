@@ -15,7 +15,7 @@ export async function DELETE(request: NextRequest) {
     await connectDB();
     const searchParams: URLSearchParams = request.nextUrl.searchParams;
     const name: string | null = searchParams.get("userName");
-    User.deleteOne({ userName: name });
+    await User.deleteOne({ userName: name });
     return NextResponse.json({
       status: 200,
     });
@@ -40,7 +40,7 @@ export async function PATCH(request: NextRequest) {
     const lastName: string | null = searchParams.get("lastName");
     const email: string | null = searchParams.get("email");
     const password: string | null = searchParams.get("password"); //needs to be secured
-    User.updateOne(
+    await User.updateOne(
       { userName: name },
       { $set: { email: email, password: password, firstName: firstName, lastName: lastName } },
     );
