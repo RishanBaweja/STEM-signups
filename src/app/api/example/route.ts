@@ -15,6 +15,14 @@ export async function DELETE(request: NextRequest) {
     await connectDB();
     const searchParams: URLSearchParams = request.nextUrl.searchParams;
     const name: string | null = searchParams.get("userName");
+    if (!name) {
+      return NextResponse.json(
+        { message: `Error: userName not found` },
+        {
+          status: 400,
+        },
+      );
+    }
     await User.deleteOne({ userName: name });
     return NextResponse.json({
       status: 200,
@@ -36,6 +44,14 @@ export async function PATCH(request: NextRequest) {
     await connectDB();
     const searchParams: URLSearchParams = request.nextUrl.searchParams;
     const name: string | null = searchParams.get("userName");
+    if (!name) {
+      return NextResponse.json(
+        { message: `Error: userName not found` },
+        {
+          status: 400,
+        },
+      );
+    }
     const firstName: string | null = searchParams.get("firstName");
     const lastName: string | null = searchParams.get("lastName");
     const email: string | null = searchParams.get("email");
