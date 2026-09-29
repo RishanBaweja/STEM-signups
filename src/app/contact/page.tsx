@@ -6,7 +6,7 @@ export default function Contact() {
       <Navbar />
       <main>
         <form id="contact-form">
-          <h1 className="page-title">Contact</h1>
+          <h1 className="page-title">Contact</h1> {/*TODO: Implement form functionality*/}
           <label htmlFor="name">Name</label>
           <input type="text" id="name" name="name" required />
           <label htmlFor="email">Email</label>

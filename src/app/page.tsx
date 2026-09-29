@@ -8,7 +8,7 @@ export default function Home() {
         <h1 className="page-title">STEM Signups</h1>
         <div className="about">
           <div className="about-text">
-            <p>This is the website for STEM Signups</p>
+            <p>This is the website for STEM Signups</p> {/*TODO: Change placeholder text*/}
           </div>
         </div>
       </main>

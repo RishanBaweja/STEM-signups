@@ -6,7 +6,7 @@ export default function Register() {
       <Navbar />
       <main>
         <form id="register-form">
-          <h1 className="page-title">Register</h1>
+          <h1 className="page-title">Register</h1> {/*TODO: Implement form functionality*/}
           <label htmlFor="email">Email</label>
           <input type="email" id="email" name="email" required />
           <label htmlFor="password">Password</label>

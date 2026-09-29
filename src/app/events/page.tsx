@@ -9,12 +9,14 @@ export default function Events() {
       <main>
         <h1 className="page-title">Events</h1>
         <div className="event">
-          <Image src="/placeholder.jpg" alt="Alt Text" id="event-image" width={612} height={612} />
+          {/* TODO: Replace the placeholder image and alt text. */}
+          <Image src="/placeholder.jpg" alt="Alt Text" id="event-image" width={612} height={612} />{" "}
           <div className="event-details">
             <div className="event-name">
-              <h2>Event 1</h2>
+              <h2>Event 1</h2> {/*TODO: Change placeholder text*/}
             </div>
-            <p className="event-description">This is an event</p>
+            <p className="event-description">This is an event</p> {/*TODO: Change placeholder text*/}
+            {/* TODO: Add the event RSVP destination. */}
             <a href="" className="RSVP">
               RSVP
             </a>
