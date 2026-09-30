@@ -1,0 +1,232 @@
+/* Shared page layout */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  font-family: "Times New Roman", Times, serif;
+  background-color: #d7c7ff;
+}
+
+main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20px 40px;
+}
+
+h1,
+h2 {
+  text-align: center;
+}
+
+.page-title {
+  font-size: clamp(32px, 6vw, 48px);
+}
+
+/* Navigation */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 16px 20px;
+  background-color: black;
+  color: white;
+}
+
+.logo {
+  margin: 0;
+}
+
+.nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.navbar a {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  letter-spacing: 2px;
+}
+
+.navbar a:hover,
+.navbar a:focus-visible {
+  text-decoration: underline;
+}
+
+/* Footer */
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 2.5rem;
+  padding: 12px 20px;
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+/* Contact and registration forms */
+
+#contact-form,
+#register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+form label {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #363636;
+  border-radius: 12px;
+  font: inherit;
+  font-size: 16px;
+}
+
+textarea {
+  min-height: 160px;
+  resize: vertical;
+}
+
+input[type="submit"] {
+  align-self: center;
+  margin-top: 12px;
+  padding: 16px 24px;
+  border: 2px solid #363636;
+  border-radius: 12px;
+  background-color: transparent;
+  font: inherit;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #8f8f8f;
+}
+
+input:focus-visible,
+textarea:focus-visible,
+.RSVP:focus-visible {
+  outline: 3px solid #533399;
+  outline-offset: 3px;
+}
+
+/* Home and about pages */
+
+.about-text,
+.entry-info {
+  max-width: 1000px;
+  margin-top: 20px;
+  font-size: 24px;
+  text-align: center;
+}
+
+/* Events */
+
+.event {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 1000px;
+  padding: 30px;
+  border: 2px solid black;
+  border-radius: 12px;
+  background-color: white;
+}
+
+#event-image {
+  width: 50%;
+  max-width: 500px;
+  height: auto;
+  border: 2px solid black;
+  border-radius: 12px;
+}
+
+.event-details {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.event-name {
+  margin-bottom: 20px;
+  font-size: 24px;
+  text-align: center;
+}
+
+.event-description {
+  text-align: center;
+}
+
+.RSVP {
+  display: block;
+  width: fit-content;
+  min-width: 100px;
+  margin: 24px auto 0;
+  padding: 12px 20px;
+  border: 2px solid #363636;
+  border-radius: 12px;
+  background-color: white;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+}
+
+.RSVP:hover {
+  background-color: #8f8f8f;
+}
+
+/* Smaller screens */
+
+@media (max-width: 700px) {
+  .navbar {
+    flex-direction: column;
+  }
+
+  .event {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  #event-image {
+    width: 100%;
+  }
+}

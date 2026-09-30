@@ -17,7 +17,7 @@ const UserSchema = new Schema({
   role: { type: String, enum: ["educator", "admin"], required: true },
   educatorInfo: {
     type: EducatorInfoSchema,
-    required: function () {
+    required: function (this: any) {
       return this.role === "educator";
     },
   },
