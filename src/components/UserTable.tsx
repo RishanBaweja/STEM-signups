@@ -18,11 +18,12 @@ type UserData = {
 export default function UsersTable() {
   const [users, setUsers] = useState<UserData[]>([]);
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     async function fetchUsers() {
       try {
-        const response = await fetch("/api/example");
+        const response = await fetch("/api/users");
 
         if (!response.ok) {
           throw new Error("Unable to load users.");
@@ -31,6 +32,8 @@ export default function UsersTable() {
         setUsers(await response.json());
       } catch {
         setError("Unable to load users.");
+      } finally {
+        setIsLoading(false);
       }
     }
 
@@ -38,7 +41,8 @@ export default function UsersTable() {
   }, []);
 
   if (error) return <p>{error}</p>;
-  if (users.length === 0) return <p>Loading users...</p>;
+  if (isLoading) return <p>Loading users...</p>;
+  if (users.length === 0) return <p>No users found.</p>;
 
   return (
     <table>
