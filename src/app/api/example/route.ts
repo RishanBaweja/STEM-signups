@@ -34,7 +34,8 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error("Error creating user:", error);
     return NextResponse.json({ error: "Failure to Create New User" }, { status: 500 });
-
+  }
+}
 //  // Example GET API route
 //  @returns {message: string}
 // export async function GET() {
