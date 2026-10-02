@@ -36,6 +36,8 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Failure to Create New User" }, { status: 500 });
   }
 }
+
+//DELETE api based on userName
 export async function DELETE(request: NextRequest) {
   try {
     await connectDB();

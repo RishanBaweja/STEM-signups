@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import UsersTable from "@/components/UserTable";
 
 export default function Home() {
   return (
@@ -10,6 +11,7 @@ export default function Home() {
           <div className="about-text">
             <p>This is the website for STEM Signups</p> {/*TODO: Change placeholder text*/}
           </div>
+          <UsersTable />
         </div>
       </main>
       <footer className="footer">© 2026 STEM Signups | All Rights Reserved</footer>
