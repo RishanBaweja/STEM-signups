@@ -30,8 +30,8 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Username, email, and password cannot be empty." }, { status: 400 });
     }
 
-    const usernameTaken = await User.exists({ Username: normalizedUsername });
-    const emailTaken = await User.exists({ Email: normalizedEmail });
+    const usernameTaken = await User.exists({ username: normalizedUsername });
+    const emailTaken = await User.exists({ email: normalizedEmail });
 
     if (usernameTaken) {
       return NextResponse.json({ error: "Username already exists.", field: "username" }, { status: 409 });
