@@ -18,7 +18,6 @@ export async function POST(request: Request) {
   try {
     await connectDB();
     const { firstName, lastName, username, email, password, role, educatorInfo } = await request.json();
-
     const newUser = new User({
       firstName,
       lastName,
@@ -83,7 +82,7 @@ export async function PATCH(request: NextRequest) {
     const firstName: string | null = searchParams.get("firstName");
     const lastName: string | null = searchParams.get("lastName");
     const email: string | null = searchParams.get("email");
-    const password: string | null = searchParams.get("password"); //needs to be secured
+    const password: string | null = searchParams.get("password");
     await User.updateOne(
       { userName: name },
       { $set: { email: email, password: password, firstName: firstName, lastName: lastName } },
