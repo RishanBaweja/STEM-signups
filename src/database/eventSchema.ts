@@ -1,5 +1,4 @@
 import mongoose, { Schema } from "mongoose";
-import User from "@/database/userSchema";
 
 const EventSchema = new Schema({
   hostName: { type: [String], required: true, trim: true },
@@ -8,7 +7,7 @@ const EventSchema = new Schema({
   eventDate: { type: Date, required: true, trim: true },
   eventTime: { type: String, required: true, trim: true },
   eventSubject: { type: [String], required: true, trim: true },
-  attendees: { type: [User], required: true, trim: true, default: [] },
+  attendees: [{ type: Schema.Types.ObjectId, ref: "User", required: true, default: [] }],
 });
 
 export default mongoose.models.Event || mongoose.model("Event", EventSchema);
