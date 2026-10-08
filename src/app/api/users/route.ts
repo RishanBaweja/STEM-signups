@@ -1,11 +1,12 @@
 import connectDB from "@/database/db";
 import User from "@/database/userSchema";
 import { NextResponse, NextRequest } from "next/server";
+import bcrypt from "bcryptjs";
 
 export async function GET() {
   try {
     await connectDB();
-    const users = await User.find();
+    const users = await User.find().select("-password");
 
     return NextResponse.json(users, { status: 200 });
   } catch (error) {
@@ -18,12 +19,36 @@ export async function POST(request: Request) {
   try {
     await connectDB();
     const { firstName, lastName, username, email, password, role, educatorInfo } = await request.json();
+
+    if (typeof username !== "string" || typeof email !== "string" || typeof password !== "string") {
+      return NextResponse.json({ error: "Username, email, and password are required." }, { status: 400 });
+    }
+
+    const normalizedUsername = username.trim().toLowerCase();
+    const normalizedEmail = email.trim().toLowerCase();
+    if (!normalizedUsername || !normalizedEmail || !password) {
+      return NextResponse.json({ error: "Username, email, and password cannot be empty." }, { status: 400 });
+    }
+
+    const usernameTaken = await User.exists({ username: normalizedUsername });
+    const emailTaken = await User.exists({ email: normalizedEmail });
+
+    if (usernameTaken) {
+      return NextResponse.json({ error: "Username already exists.", field: "username" }, { status: 409 });
+    }
+
+    if (emailTaken) {
+      return NextResponse.json({ error: "Email already exists.", field: "email" }, { status: 409 });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 12);
+
     const newUser = new User({
       firstName,
       lastName,
-      username,
-      email,
-      password,
+      username: normalizedUsername,
+      email: normalizedEmail,
+      password: hashedPassword,
       role,
       educatorInfo: role === "educator" ? educatorInfo : undefined,
     });
@@ -31,11 +56,13 @@ export async function POST(request: Request) {
     await newUser.save();
     return NextResponse.json({ message: "User Creation Successful" }, { status: 201 });
   } catch (error) {
-    console.error("Error creating user:", error);
+    if (typeof error === "object" && error !== null && "code" in error && error.code === 11000) {
+      return NextResponse.json({ error: "Username or email already exists." }, { status: 409 });
+    }
+
     return NextResponse.json({ error: "Failure to Create New User" }, { status: 500 });
   }
 }
-
 //DELETE api based on userName
 export async function DELETE(request: NextRequest) {
   try {
