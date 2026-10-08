@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-//import User interface
+import User from "@/database/userSchema";
 
 const EventSchema = new Schema({
   hostName: { type: [String], required: true, trim: true },
