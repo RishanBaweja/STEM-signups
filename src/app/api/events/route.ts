@@ -46,7 +46,7 @@ export async function DELETE(request: NextRequest) {
       return NextResponse.json(
         { message: `Error: eventId not found` },
         {
-          status: 400,
+          status: 404,
         },
       );
     }
@@ -75,7 +75,7 @@ export async function PATCH(request: NextRequest) {
       return NextResponse.json(
         { message: `Error: eventId not found` },
         {
-          status: 400,
+          status: 404,
         },
       );
     }
