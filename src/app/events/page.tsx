@@ -68,6 +68,9 @@ export default function Events() {
               </div>
               <p className="event-description">
                 <Event key={event.eventId} event={event} />
+                <strong>Description: </strong>
+                <div></div>
+                {event.eventDescription}
               </p>
               <a href="" className="RSVP">
                 RSVP
