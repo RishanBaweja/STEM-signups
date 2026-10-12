@@ -48,6 +48,6 @@ describe("POST /api/users", () => {
   test("Success!", async () => {
     const response = await POST(createRequest());
 
-    await expect(response.json()).resolves.toEqual({ message: "Success!" });
+    await expect(response.json()).resolves.toEqual({ message: "User Creation Successful" });
   });
 });
