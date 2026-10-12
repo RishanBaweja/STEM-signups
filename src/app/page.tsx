@@ -9,7 +9,11 @@ export default function Home() {
         <h1 className="page-title">STEM Signups</h1>
         <div className="about">
           <div className="about-text">
-            <p>This is the website for STEM Signups</p> {/*TODO: Change placeholder text*/}
+            <p>
+              This is a website for STEM Signups. You can sign up to be an educator or website admin. Educators can then
+              RSVP for STEM events to volunteer for them.{" "}
+            </p>{" "}
+            {/*TODO: Change placeholder text*/}
           </div>
         </div>
       </main>
