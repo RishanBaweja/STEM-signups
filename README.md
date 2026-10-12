@@ -1,29 +1,23 @@
-# name of non-profit
+# STEM-Signups
 
-{One sentence description of the project}
+A place where volunteers can sing up to teach STEM signups to youth.
+
+[Live Production Link of Website](https://stem-signups.vercel.app/)
 
 ## Table of Contents
 
 - [Overview](#overview)
   - [Purpose](#purpose)
-  - [Team](#team)
+- [Tech Stack](#tech-stack)
 - [Getting Started And Contributing](#getting-started-and-contributing)
 
 ## Overview
 
 ### Purpose
+We want to have volunteers to teach STEM classes to educate the youth.
 
-{Short paragraph description of the non-profit mission and the purpose of this project. Who will this project help, why is it necessary. Impact of the project.}
-
-### Team
-
-The {non-profit name} team consists of {#} Cal Poly students. Over the course of about 9 months, we worked as a team to deploy this web application. The team members are listed below:
-
-- [First Last](https://www.linkedin.com/) - Project Manager
-- [First Last](https://www.linkedin.com/) - Designer
-- [First Last](https://www.linkedin.com/) - Tech Lead
-- [First Last](https://www.linkedin.com/) - Tech Lead
-- [First Last](https://www.linkedin.com/) - Software Developer
+## Tech Stack
+Our app was built through NextJS for our routers and uses plain CSS for the frontend. The backend is hosted through MongoDB via Mongoose. Testing was done through Vitest. The website is hosted on Vercel.
 
 ## Getting Started And Contributing
 
