@@ -1,4 +1,7 @@
 export type eventData = {
+  eventId: string;
+  eventName: string;
+  eventDescription: string;
   hostName: string[];
   hostLocation: string;
   postDate: string;
@@ -9,15 +12,16 @@ export type eventData = {
 };
 
 export default function Event({ event }: { event: eventData }) {
+  const eventSplit = event.eventDate.split("T");
+  const eventDate = eventSplit[0];
   return (
     <tr>
+      <td>{event.eventName}</td>
       <td>{event.hostName.join(", ") ?? "—"}</td>
       <td>{event.hostLocation}</td>
-      <td>{event.postDate}</td>
-      <td>{event.eventDate}</td>
-      <td>{event.eventTime}</td>
+      <td>{event.eventDescription}</td>
+      <td>{eventDate}</td>
       <td>{event.eventSubject.join(", ") ?? "—"}</td>
-      <td>{event.attendees?.join(", ") ?? "—"}</td>
     </tr>
   );
 }
