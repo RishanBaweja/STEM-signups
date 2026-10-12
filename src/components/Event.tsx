@@ -15,13 +15,19 @@ export default function Event({ event }: { event: eventData }) {
   const eventSplit = event.eventDate.split("T");
   const eventDate = eventSplit[0];
   return (
-    <tr>
-      <td>{event.eventName}</td>
-      <td>{event.hostName.join(", ") ?? "—"}</td>
-      <td>{event.hostLocation}</td>
-      <td>{event.eventDescription}</td>
-      <td>{eventDate}</td>
-      <td>{event.eventSubject.join(", ") ?? "—"}</td>
-    </tr>
+    <>
+      <tr>
+        <th>Host</th>
+        <th>Location</th>
+        <th>Date</th>
+        <th>STEM subjects</th>
+      </tr>
+      <tr>
+        <td>{event.hostName.join(", ") ?? "—"}</td>
+        <td>{event.hostLocation}</td>
+        <td>{eventDate}</td>
+        <td>{event.eventSubject.join(", ") ?? "—"}</td>
+      </tr>
+    </>
   );
 }
