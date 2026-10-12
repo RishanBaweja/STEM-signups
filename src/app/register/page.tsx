@@ -10,7 +10,10 @@ type ApiError = {
 
 type FieldErrors = Partial<Record<"username" | "email", string>>;
 
+const STEM_SUBJECTS = ["Mathematics", "Biology", "Chemistry", "Physics"];
+
 export default function Register() {
+  const [role, setRole] = useState("");
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   const [formError, setFormError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
@@ -21,10 +24,7 @@ export default function Register() {
 
     const form = event.currentTarget;
     const formData = new FormData(form);
-    const stemSubjects = String(formData.get("stemSubjects") ?? "")
-      .split(",")
-      .map((subject) => subject.trim())
-      .filter(Boolean);
+    const stemSubjects = formData.getAll("stemSubjects").map(String);
 
     setFieldErrors({});
     setFormError("");
@@ -42,7 +42,7 @@ export default function Register() {
           email: formData.get("email"),
           password: formData.get("password"),
           role: formData.get("role"),
-          educatorInfo: { stemSubjects },
+          educatorInfo: role === "educator" ? { stemSubjects } : undefined,
         }),
       });
 
@@ -58,6 +58,7 @@ export default function Register() {
         return;
       }
       form.reset();
+      setRole("");
       setSuccessMessage("Registration successful!");
     } catch {
       setFormError("Unable to register. Please try again later.");
@@ -112,9 +113,23 @@ export default function Register() {
           <label htmlFor="password">Password</label>
           <input type="password" id="password" name="password" />
           <label htmlFor="role">Role</label>
-          <input type="text" id="role" name="role" />
-          <label htmlFor="stemSubjects">STEM subjects</label>
-          <input type="text" id="stemSubjects" name="stemSubjects" placeholder="For example: Biology, Chemistry" />
+          <select id="role" name="role" value={role} onChange={(event) => setRole(event.target.value)} required>
+            <option value="">Select a role</option>
+            <option value="educator">Educator</option>
+            <option value="admin">Admin</option>
+          </select>
+          {role === "educator" && (
+            <fieldset>
+              <legend>STEM Subjects</legend>
+
+              {STEM_SUBJECTS.map((subject) => (
+                <label key={subject}>
+                  <input type="checkbox" name="stemSubjects" value={subject} />
+                  {subject}
+                </label>
+              ))}
+            </fieldset>
+          )}
           <input type="submit" value={isSubmitting ? "Registering..." : "Register"} disabled={isSubmitting} />
         </form>
       </main>
