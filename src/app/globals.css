@@ -166,6 +166,7 @@ textarea:focus-visible,
   gap: 20px;
   width: 100%;
   max-width: 1000px;
+  max-height: 200px;
   padding: 30px;
   border: 2px solid black;
   border-radius: 12px;
@@ -184,16 +185,22 @@ textarea:focus-visible,
   flex: 1;
   min-width: 0;
   overflow-wrap: anywhere;
+  padding: 10px;
 }
 
 .event-name {
   margin-bottom: 20px;
   font-size: 24px;
   text-align: center;
+  display: block;
 }
 
 .event-description {
   text-align: center;
+  font-size: 24px;
+  text-align: center;
+  display: block;
+  padding: 10px 10px;
 }
 
 .RSVP {
