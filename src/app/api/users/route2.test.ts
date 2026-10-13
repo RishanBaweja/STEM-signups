@@ -79,7 +79,6 @@ describe("GET /api/users", () => {
     mockSelect.mockResolvedValue([]);
 
     const response = await GET();
-    console.log(response);
 
     expect(response.status).toBe(200);
     expect(await response.json()).toEqual([]);
