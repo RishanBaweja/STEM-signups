@@ -1,6 +1,5 @@
 "use client";
 import Navbar from "@/components/Navbar";
-import Event from "@/components/Event";
 import { type FormEvent, useEffect, useState } from "react";
 
 export type eventData = {
@@ -99,13 +98,34 @@ export default function Events() {
             <div className="event-name">
               <h2>{event.eventName}</h2>
             </div>
-            <p className="event-description">
-              <Event event={event} />
-              <strong>Description: </strong>
-              <div></div>
-              {event.eventDescription}
-            </p>
+            <div className="event-details">
+              <p>
+                <strong>Host: </strong>
+                {event.hostName.join(", ")}
+              </p>
+
+              <p>
+                <strong>Location: </strong>
+                {event.hostLocation}
+              </p>
+
+              <p>
+                <strong>Date: </strong>
+                {event.eventDate.split("T")[0]}
+              </p>
+
+              <p>
+                <strong>Subjects: </strong>
+                {event.eventSubject.join(", ")}
+              </p>
+
+              <p className="event-description">
+                <strong>Description: </strong>
+                {event.eventDescription}
+              </p>
+            </div>
             <form onSubmit={(e) => void handleRsvp(e, event._id)}>
+              <h3>Register for event</h3>
               <label htmlFor={`rsvp-email-${event._id}`}>Email address</label>
 
               <input type="email" id={`rsvp-email-${event._id}`} name="email" placeholder="you@example.com" required />

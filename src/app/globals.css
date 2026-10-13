@@ -161,13 +161,16 @@ textarea:focus-visible,
 /* Events */
 
 .event {
-  display: flex;
-  align-items: center;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 340px);
+  gap: 20px 40px;
+  align-items: start;
+
   width: 100%;
   max-width: 1000px;
-  max-height: 200px;
-  padding: 30px;
+  margin-bottom: 20px;
+  padding: 28px;
+
   border: 2px solid black;
   border-radius: 12px;
   background-color: white;
@@ -182,25 +185,36 @@ textarea:focus-visible,
 }
 
 .event-details {
-  flex: 1;
+  width: 100%;
   min-width: 0;
+  padding: 0;
   overflow-wrap: anywhere;
-  padding: 10px;
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.event-details p {
+  margin: 8px 0;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
 .event-name {
-  margin-bottom: 20px;
-  font-size: 24px;
-  text-align: center;
-  display: block;
+  grid-column: 1;
+  grid-row: 1;
+  margin-bottom: 0;
+}
+
+.event-name h2 {
+  margin: 0;
+  font-size: 28px;
+  text-align: left;
 }
 
 .event-description {
-  text-align: center;
-  font-size: 24px;
-  text-align: center;
-  display: block;
-  padding: 10px 10px;
+  font-size: 16px;
+  text-align: left;
+  padding: 0;
 }
 
 .RSVP {
@@ -221,6 +235,53 @@ textarea:focus-visible,
   background-color: #8f8f8f;
 }
 
+.event form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  width: 100%;
+  min-width: 0;
+  max-width: none;
+  padding: 20px;
+
+  background-color: #f3eeff;
+  border: 1px solid #ded3f5;
+  border-radius: 12px;
+
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  align-self: center;
+}
+
+.event form label {
+  font-size: 16px;
+}
+
+.event .RSVP {
+  width: 100%;
+  margin: 4px 0 0;
+  padding: 12px 20px;
+
+  background-color: #6046a5;
+  color: white;
+  border: 1px solid #6046a5;
+  border-radius: 8px;
+
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.event .RSVP:hover:not(:disabled) {
+  background-color: #49357e;
+}
+
+.event .RSVP:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
 /* Smaller screens */
 
 @media (max-width: 700px) {
@@ -229,7 +290,7 @@ textarea:focus-visible,
   }
 
   .event {
-    flex-direction: column;
+    grid-template-columns: 1fr;
     padding: 20px;
   }
 
