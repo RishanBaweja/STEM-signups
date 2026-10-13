@@ -1,4 +1,5 @@
 import { describe, expect, test, vi } from "vitest";
+import { NextRequest } from "next/server";
 
 vi.mock("@/database/db", () => ({
   default: async () => ({}),
@@ -10,10 +11,11 @@ vi.mock("@/database/userSchema", () => ({
       async save() {}
     },
     { exists: async () => null },
+    { deleteOne: vi.fn().mockResolvedValue({ deletedCount: 1 }) },
   ),
 }));
 
-import { POST } from "./route";
+import { POST, DELETE } from "./route";
 
 const user = {
   firstName: "jonah",
@@ -49,5 +51,34 @@ describe("POST /api/users", () => {
     const response = await POST(createRequest());
 
     await expect(response.json()).resolves.toEqual({ message: "User Creation Successful" });
+  });
+});
+
+import User from "@/database/userSchema";
+describe("DELETE /api/users", () => {
+  test("deletes a user", async () => {
+    const request = new NextRequest("http://localhost/api/users?userName=jd100", {
+      method: "DELETE",
+    });
+
+    const response = await DELETE(request);
+
+    expect(response.status).toBe(200);
+    await expect(response.json()).resolves.toEqual({ status: 200 });
+  });
+
+  test("rejects a request without userName", async () => {
+    const request = new NextRequest("http://localhost/api/users");
+    const response = await DELETE(request);
+
+    expect(response.status).toBe(400);
+  });
+
+  test("deletes the requested username", async () => {
+    const request = new NextRequest("http://localhost/api/users?userName=jd100", { method: "DELETE" });
+
+    await DELETE(request);
+
+    expect(User.deleteOne).toHaveBeenCalledWith({ username: "jd100" });
   });
 });

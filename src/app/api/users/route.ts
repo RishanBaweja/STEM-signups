@@ -77,7 +77,7 @@ export async function DELETE(request: NextRequest) {
         },
       );
     }
-    await User.deleteOne({ userName: name });
+    await User.deleteOne({ username: name });
     return NextResponse.json({
       status: 200,
     });
