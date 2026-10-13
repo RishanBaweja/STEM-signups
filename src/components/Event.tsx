@@ -1,5 +1,5 @@
 export type eventData = {
-  eventId: string;
+  _id: string;
   eventName: string;
   eventDescription: string;
   hostName: string[];
